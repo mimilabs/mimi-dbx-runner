@@ -15,14 +15,16 @@ class Config:
             "DBX_UPLOAD_PATH", "/tmp/dbx_runner"
         )
 
+    @property
+    def serverless(self):
+        return not self.cluster_id
+
     def validate(self):
         missing = []
         if not self.host:
             missing.append("DATABRICKS_HOST")
         if not self.token:
             missing.append("DATABRICKS_TOKEN")
-        if not self.cluster_id:
-            missing.append("DATABRICKS_CLUSTER_ID")
         if missing:
             print(f"Error: missing required config: {', '.join(missing)}", file=sys.stderr)
             print("Set them in .env or as environment variables.", file=sys.stderr)

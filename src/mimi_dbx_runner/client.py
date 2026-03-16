@@ -55,14 +55,19 @@ class DatabricksRunner:
         print(f"Uploaded → {self._remote_path}")
 
     def _submit(self, params):
-        task = SubmitTask(
+        task_kwargs = dict(
             task_key="dbx_run",
-            existing_cluster_id=self.config.cluster_id,
             notebook_task=NotebookTask(
                 notebook_path=self._remote_path,
                 base_parameters=params,
             ),
         )
+        if self.config.cluster_id:
+            task_kwargs["existing_cluster_id"] = self.config.cluster_id
+        else:
+            print("Using serverless compute")
+
+        task = SubmitTask(**task_kwargs)
         response = self.client.jobs.submit(
             run_name=f"dbx-run: {os.path.basename(self._remote_path)}",
             tasks=[task],
