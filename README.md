@@ -34,7 +34,7 @@ Options:
 ### Examples
 
 ```bash
-dbx-run create_ai_dataset_dtrr.py -p client_name=heops
+dbx-run my_notebook.py -p client_name=acme
 dbx-run analysis.ipynb -p start_date=2024-01-01 --no-cleanup
 python -m mimi_dbx_runner notebook.py -p key=value
 ```
