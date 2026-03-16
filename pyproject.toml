@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mimi-dbx-runner"
+version = "0.1.0"
+description = "CLI tool to run Databricks notebooks from local git repos"
+requires-python = ">=3.9"
+dependencies = [
+    "databricks-sdk>=0.20.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+dbx-run = "mimi_dbx_runner.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
