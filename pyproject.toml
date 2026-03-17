@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mimi-dbx-runner"
-version = "0.2.0"
+version = "0.2.1"
 authors = [
   { name="Yubin Park", email="yubin.park@mimilabs.ai" },
 ]
@@ -28,5 +28,5 @@ dbx-run = "mimi_dbx_runner.cli:main"
 Homepage = "https://github.com/mimilabs/mimi-dbx-runner"
 Issues = "https://github.com/mimilabs/mimi-dbx-runner/issues"
 
-[tool.hatch.build]
+[tool.hatch.build.targets.wheel]
 packages = ["src/mimi_dbx_runner"]
